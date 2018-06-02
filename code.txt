@@ -1,0 +1,29 @@
+void cal_average()
+{
+  int n;
+  int score[10];
+  int count;
+  int sum=0;
+  printf("请输入学生人数\n");
+  scanf("%d",&n);
+  count=n;
+  printf("请输入学生成绩\n");
+  while(count>0)
+  {
+     scanf("%d",&score[n-count]);
+     count=count-1;
+  }
+  count=n;
+  while(count>0)
+  {
+    sum=sum+score[n-count];
+    count=count-1;
+  }
+  printf("平均成绩为:%d",sum/n);
+  
+}
+int main()
+{
+  cal_average();
+  return 0;
+}

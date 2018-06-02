@@ -1,0 +1,72 @@
+INCLUDE ASM32.INC
+.DATA
+.CODE
+cal_average PROC
+local n:DWORD,score[10]:DWORD,count:DWORD,sum:DWORD,t0:DWORD,t1:DWORD,t2:DWORD,t3:DWORD,t4:DWORD,t5:DWORD,t6:DWORD,t7:DWORD,_temp:DWORD
+mov eax,0
+mov sum,eax
+invoke printf,chr$("请输入学生人数\n")
+invoke scanf,chr$("%d"),addr(n)
+mov eax,n
+mov count,eax
+invoke printf,chr$("请输入学生成绩\n")
+LABEL1:
+mov eax,count
+mov ebx,0
+cmp eax,ebx
+jle LABEL0
+mov eax,n
+mov ebx,count
+sub eax,ebx
+mov t1,eax
+mov edx,t1
+invoke scanf,chr$("%d"),addr(score[edx*4])
+mov eax,count
+mov ebx,1
+sub eax,ebx
+mov t2,eax
+mov eax,t2
+mov count,eax
+jmp LABEL1
+LABEL0:
+mov eax,n
+mov count,eax
+LABEL3:
+mov eax,count
+mov ebx,0
+cmp eax,ebx
+jle LABEL2
+mov eax,n
+mov ebx,count
+sub eax,ebx
+mov t4,eax
+mov edx,t4
+mov eax,sum
+mov ebx,score[edx*4]
+add eax,ebx
+mov t5,eax
+mov eax,t5
+mov sum,eax
+mov eax,count
+mov ebx,1
+sub eax,ebx
+mov t6,eax
+mov eax,t6
+mov count,eax
+jmp LABEL3
+LABEL2:
+xor edx,edx
+mov eax,sum
+mov ebx,n
+div ebx
+mov t7,eax
+invoke printf,chr$("平均成绩为:%d"),t7
+ret
+cal_average ENDP
+main PROC
+invoke cal_average
+ret
+main ENDP
+END main
+P
+END main
